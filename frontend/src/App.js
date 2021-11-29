@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
-
+import {useDispatch,useSelector} from 'react-redux'
 function App() {
+  const dispatch=useDispatch()
+  const count=useSelector((state)=>state.counter)
+  const name=useSelector((state)=>state.name)
+  const clickAction=()=>{
+    dispatch({
+      type:"counter",
+      payload:5
+    })
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h2>{name}</h2> 
+     <h2>Counter {count}</h2>
+     <button onClick={clickAction}>click</button>
     </div>
   );
 }
