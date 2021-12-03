@@ -1,14 +1,12 @@
 
 const getProducts=(req,res,next)=>{
-    res.send('anas')
-    console.log('shafique');
+    const title=req.body;
+    console.log(title);
+    res.send('success')
 }
 
-const create=()=>{
-    console.log('anas')
-}
+
 
 module.exports={
-    getProducts:getProducts,
-    create:create
+    getProducts:getProducts
 }

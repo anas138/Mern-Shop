@@ -13,3 +13,21 @@ body{
   display: inline;
   margin: 20px;
 }
+.container{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addProductForm{
+  
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+.addProductForm input, .addProductForm button {
+  display: block;
+  padding: 5px;
+  margin: 10px;
+  width: 500px;
+}

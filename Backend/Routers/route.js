@@ -2,6 +2,6 @@ const express=require('express')
 const getProducts = require('../Conroller/admin')
 const router=express.Router();
 
-router.get("/",getProducts.getProducts)
+router.post("/addProducts",getProducts.getProducts)
 
 module.exports=router
