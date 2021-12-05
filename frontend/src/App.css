@@ -20,14 +20,31 @@ body{
   align-items: center;
 }
 .addProductForm{
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: 2px solid black;
   border-radius: 5px;
-  padding: 10px;
+  padding: 20px;
 }
 .addProductForm input, .addProductForm button {
   display: block;
   padding: 5px;
   margin: 10px;
   width: 500px;
+}
+.card{
+  width: 200px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 2px;
+  padding: 5px;
+  
+  margin: 30px;
+}
+.cardContainer{
+  display: flex;
+  text-align: center;
+  margin-top: 50px;
+  
 }

@@ -11,7 +11,10 @@ app.use(cors())
 app.use(express.json())
 app.use(router);
 
-dbConnect()
-app.listen(8080, () => {
-    console.log("listen")
+dbConnect((client)=>{
+    //console.log(client)
+    app.listen(8080, () => {
+        console.log("listen")
+    })
+
 })
