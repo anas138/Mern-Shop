@@ -1,4 +1,6 @@
 const getDb = require('../utils/dbConnection').getDb
+const mongodb=require("mongodb")
+const ObjectId=mongodb.ObjectId
 class Products {
     constructor(title, price, description, imageUrl) {
         this.title = title
@@ -27,6 +29,18 @@ class Products {
             console.log(err)
         }))
 
+    }
+
+    static delProduct=(id)=>{
+        const db = getDb()
+        return db.collection('products').deleteOne({_id:new ObjectId(id)})
+        .then(res=>{
+            console.log(res)
+            return res
+        })
+        .then((err)=>{
+            console.log(err)
+        })
     }
 }
 module.exports = Products

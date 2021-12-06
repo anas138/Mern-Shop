@@ -20,10 +20,10 @@ const NavBar = () => {
                             <Link to='/products' style={{ textDecoration: 'none',color:"white" }}>Add Products</Link>
                         </Typography>
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
-                            Cart
+                            <Link to="/cart" style={{ textDecoration: 'none',color:"white" }}>Cart</Link>
                         </Typography>
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
-                            Admin
+                        <Link to="/admin" style={{ textDecoration: 'none',color:"white" }}>Admin</Link>
                         </Typography>
                     </Toolbar>
                 </AppBar>

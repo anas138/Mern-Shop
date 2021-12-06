@@ -25,9 +25,21 @@ const getProducts=(req,res,next)=>{
    })
 }
 
+const deleteProducts=(req,res,next)=>{
+    console.log(req.query.id,"getId")
+   Product.delProduct(req.query.id)
+   .then(data=>{
+       console.log(data)
+       res.send(data)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+}
 
 
 module.exports={
     addProducts:addProducts,
-    getProducts:getProducts
+    getProducts:getProducts,
+    deleteProducts:deleteProducts
 }

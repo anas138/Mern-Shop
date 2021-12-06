@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 const initialState = {
     counter: 10,
     name: 'anas',
-    flag:false
+    singleProduct:[]
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,10 +14,10 @@ const reducer = (state = initialState, action) => {
                 counter: state.counter + action.payload
             }
         }
-        case "flagChange":{
+        case "get singlr product":{
             return{
                 ...state,
-                flag:action.payload
+                singleProduct:action.payload
             }
 
         }

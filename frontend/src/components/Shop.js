@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import {useSelector} from 'react-redux'
 import Button from '@mui/material/Button';
-import axios from 'axios'
+import ApiHandler from "./Utils/apiHandler"
 
 function Shop() {
-    const [products, getProducts] = useState([ ])
-    const flag=useSelector((state)=>state.flag)
+    const apiHandler=new ApiHandler()
+    const [products, getProducts] = useState([])
+
     useEffect(() => {
-        console.log(products)
-        axios.get("http://localhost:8080/addProducts")
-            .then(res => {
-                console.log(res.data)
-                getProducts(res.data)
-            })
-    }, [flag])
+        apiHandler.getAllProducts()
+        .then((res=>{
+            console.log(res)
+            getProducts(res)
+
+        }))
+        
+    }, [])
     return (
         <div className="cardContainer">
             {products[0] !=null ? products.map((product) => {
