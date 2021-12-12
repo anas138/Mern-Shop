@@ -42,5 +42,16 @@ class Products {
             console.log(err)
         })
     }
+    static updtProduct=(data)=>{
+        const db=getDb()
+        return db.collection('products').updateOne({_id:new ObjectId(data._id)},{$set:{title:data.title,description:data.description,price:data.price,imageUrl:data.imageUrl}})
+        .then(data=>{
+            console.log(data)
+            return data;
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
 }
 module.exports = Products

@@ -7,7 +7,7 @@ import axios from "axios"
 function Admin() {
     const dispatch=useDispatch()
     const navigate=useNavigate()
-    const apiHandler = new ApiHandler
+    const apiHandler = new ApiHandler()
     const [products, getProducts] = useState([])
     const[flag,setFlag]=useState(false)
     useEffect(() => {
@@ -29,7 +29,7 @@ function Admin() {
            navigate("/products")
     }
     const deleteHandler=(e)=>{
-        axios.get(`http://localhost:8080/deleteProduct?id=${e.target.value}`)
+        apiHandler.deleteHandler(e)
         .then(res=>{
             console.log(res)
             setFlag(true)

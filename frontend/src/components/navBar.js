@@ -25,6 +25,12 @@ const NavBar = () => {
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
                         <Link to="/admin" style={{ textDecoration: 'none',color:"white" }}>Admin</Link>
                         </Typography>
+                        <Typography variant="h7" color="inherit" component="div" padding="20px">
+                        <Link to="/signup" style={{ textDecoration: 'none',color:"white" }}>Sign up</Link>
+                        </Typography>
+                        <Typography variant="h7" color="inherit" component="div" padding="20px">
+                        <Link to="/login" style={{ textDecoration: 'none',color:"white" }}>Login</Link>
+                        </Typography>
                     </Toolbar>
                 </AppBar>
             </Box>

@@ -21,6 +21,12 @@ const reducer = (state = initialState, action) => {
             }
 
         }
+        case "remove product data":{
+            return{
+                ...state,
+                singleProduct:[]
+            }
+        }
         default: {
             return state
         }
