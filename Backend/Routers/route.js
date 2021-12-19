@@ -10,5 +10,7 @@ router.get("/deleteProduct",products.deleteProducts)
 router.post("/updateproduct",products.updateProduct)
 router.post("/signup",Users.handleSignUp)
 router.post("/login",Users.singnInHandle)
+router.post("/cart",Users.AddToCart)
+router.get("/displayCartItems",Users.getCartItem)
 
 module.exports=router

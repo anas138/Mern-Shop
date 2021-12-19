@@ -6,6 +6,7 @@ import Admin from "./components/Admin"
 import { BrowserRouter as Router, Route,Routes } from 'react-router-dom'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import Cart from './components/Cart'
 import './App.css';
 function App() {
   return (
@@ -27,7 +28,11 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login/>}/>
       </Routes>
+      <Routes>
+        <Route path="/cart" element={<Cart/>}/>
+      </Routes>
     </Router>
+    
   );
 }
 

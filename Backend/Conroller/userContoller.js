@@ -26,3 +26,20 @@ exports.singnInHandle=(req,res,next)=>{
        console.log(err)
    })
 }
+
+exports.AddToCart=(req,res,next)=>{
+        console.log(req.body)
+        User.addToCartModel(req.body)
+}
+exports.getCartItem=(req,res,next)=>{
+  const token = req.query.token;
+  //console.log(token)
+  User.getCartProducts(token)
+  .then(data=>{
+      res.send(data)
+      console.log(data)
+  })
+  .catch(err=>{
+      res.send(err)
+  })
+}
