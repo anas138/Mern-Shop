@@ -1,13 +1,30 @@
-import react from 'react'
-import * as React from 'react';
+import  React,{useState,useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom'
-const NavBar = () => {
-    return (
+import {useDispatch,useSelector} from "react-redux"
 
+const NavBar = () => {
+
+    const [token,setToken]=useState()
+    const dispatch=useDispatch()
+    const getToken=useSelector((state)=>(state.token))
+    
+    const handleLogot=()=>{
+         setToken(localStorage.removeItem("token"))
+         dispatch({
+             type:"setToken"
+         })   
+
+    }
+    useEffect(()=>{
+        dispatch({
+            type:"setToken"
+        }) 
+    },[])
+    return (
         <>
 
             <Box sx={{ flexGrow: 1 }}>
@@ -29,7 +46,10 @@ const NavBar = () => {
                         <Link to="/signup" style={{ textDecoration: 'none',color:"white" }}>Sign up</Link>
                         </Typography>
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
-                        <Link to="/login" style={{ textDecoration: 'none',color:"white" }}>Login</Link>
+                       {getToken? <Link to="" style={{ textDecoration: 'none',color:"white" }} onClick={handleLogot}>Logout</Link>: <Link to="/login" style={{ textDecoration: 'none',color:"white" }}>Login</Link>}
+                        </Typography>
+                        <Typography variant="h7" color="inherit" component="div" padding="20px">
+                        <Link to="/three" style={{ textDecoration: 'none',color:"white" }}>Three js</Link>
                         </Typography>
                     </Toolbar>
                 </AppBar>

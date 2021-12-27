@@ -3,7 +3,8 @@ import { createStore } from 'redux'
 const initialState = {
     counter: 10,
     name: 'anas',
-    singleProduct:[]
+    singleProduct:[],
+    token:''
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +26,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 singleProduct:[]
+            }
+        }
+        case "setToken":{
+            return{
+                ...state,
+                token:localStorage.getItem("token")
             }
         }
         default: {

@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React,{useRef} from 'react'
+import {useDispatch } from "react-redux"
+import { useNavigate} from "react-router-dom"
 
 function Login() {
+    const navigate=useNavigate()
+    const dispatch = useDispatch()
     const email=useRef()
     const password=useRef()
     const handleLogin=(e)=>{
@@ -15,6 +19,11 @@ function Login() {
         .then(res=>{
             console.log(res)
             localStorage.setItem("token",res.data);
+            dispatch({
+                type:"setToken",
+                payload:localStorage.getItem("token")
+            })
+            navigate('/shop')
         })
         .catch(err=>{
             console.log(err)

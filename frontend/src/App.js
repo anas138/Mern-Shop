@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import NavBar from './components/navBar'
 import Products from './components/Products'
 import Shop from './components/Shop'
@@ -7,8 +7,15 @@ import { BrowserRouter as Router, Route,Routes } from 'react-router-dom'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Cart from './components/Cart'
+import Three from './components/Three'
+
 import './App.css';
 function App() {
+  const [t,setT]=useState()
+  useEffect(()=>{
+    setT(localStorage.getItem("token"));
+    
+  },[])
   return (
     <Router>
       <NavBar/>
@@ -25,11 +32,14 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp/>}/>
       </Routes>
-      <Routes>
+     { !t&&("token")&& <Routes>
         <Route path="/login" element={<Login/>}/>
-      </Routes>
+      </Routes>}
       <Routes>
         <Route path="/cart" element={<Cart/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/three" element={<Three/>}/>
       </Routes>
     </Router>
     

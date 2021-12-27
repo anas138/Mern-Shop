@@ -17,6 +17,10 @@ class Users {
 
     static signIn = (data) => {
         const db = getDb()
+        db.collection("user").updateOne({ email: data.email, password: data.password},{$set:{status:"login"}})
+        .then(res=>{
+            console.log(res,"anasRes")
+        }).catch()
         return db.collection("users").find({ email: data.email, password: data.password }).toArray()
             .then(res => {
                 console.log(res, "data")
@@ -24,6 +28,8 @@ class Users {
                     const token = jwt.sign({ email: data.email, password: data.password }, "aniHadin")
                     return token
                 }
+
+               
             })
             .catch(err => {
                 console.log(err)
