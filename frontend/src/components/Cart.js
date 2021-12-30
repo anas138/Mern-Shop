@@ -14,15 +14,15 @@ function Cart() {
     return (
         <div>
             <h3>Cart</h3>
-             {cartItems.length>0&&cartItems.map(item=>{
-                 return <div className="cartContainer">
+             {cartItems.length>0?cartItems.map((item,index)=>{
+                 return <div className="cartContainer" key={index}>
                     <span>{item.title}</span>
                     <span>{item.price}</span>
                     <span>{item.description}</span>
                     <span>{item.quantity}</span>
                     <button>Place Order</button>
                  </div>
-             })}
+             }):<div>No Cart Products</div>}
         </div>
     )
 }

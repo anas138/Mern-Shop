@@ -4,7 +4,8 @@ const initialState = {
     counter: 10,
     name: 'anas',
     singleProduct:[],
-    token:''
+    token:'',
+    isAdmin:null
 }
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 token:localStorage.getItem("token")
+            }
+        }
+        case "checkAdmin":{
+            return{
+                ...state,
+                isAdmin:action.payload
             }
         }
         default: {

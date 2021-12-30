@@ -16,6 +16,9 @@ function SignUp() {
         axios.post("http://localhost:8080/signup",data)
         .then(res=>{
             console.log(res);
+            if(res.data.res=="user already exist"){
+                alert(res.data.res)
+            }
         })
 
     }

@@ -5,25 +5,53 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom'
 import {useDispatch,useSelector} from "react-redux"
+import jwt from "jsonwebtoken"
 
 const NavBar = () => {
 
     const [token,setToken]=useState()
     const dispatch=useDispatch()
     const getToken=useSelector((state)=>(state.token))
+    const token1=useSelector((state)=>(state.isAdmin))
+    const [flag,setFlag] = useState(false)
     
-    const handleLogot=()=>{
-         setToken(localStorage.removeItem("token"))
-         dispatch({
-             type:"setToken"
-         })   
-
-    }
+    
+    useEffect(()=>{
+        
+        const t=localStorage.getItem("token")
+        if(t){
+        const verify= jwt.verify(t,"aniHadin");
+         if(verify.email=="admin@gmail.com"){
+              setToken("admin");
+              dispatch({
+                  type:"checkAdmin",
+                  payload:"admin"
+              })
+         }
+         else{
+            dispatch({
+                type:"checkAdmin",
+                payload:""
+            })  
+         }
+        }
+    },[flag])
     useEffect(()=>{
         dispatch({
             type:"setToken"
         }) 
     },[])
+    const handleLogot=()=>{
+        setToken(localStorage.removeItem("token"))
+        dispatch({
+            type:"setToken"
+        })
+        dispatch({
+            type:"checkAdmin",
+            payload:""
+        })  
+
+   }
     return (
         <>
 
@@ -33,14 +61,18 @@ const NavBar = () => {
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
                            <Link style={{textDecoration:'none',color:"white"}} to="/shop">Shop</Link> 
                         </Typography>
-                        <Typography variant="h7" color="inherit" component="div" padding="20px">
-                            <Link to='/products' style={{ textDecoration: 'none',color:"white" }}>Add Products</Link>
-                        </Typography>
+                        { token1=="admin"&&<Typography variant="h7" color="inherit" component="div" padding="20px">
+                            <Link to='/products' style={{ textDecoration: 'none',color:"white" }} onClick={()=>{
+                                setFlag(flag => (!flag))
+                            }}>Add Products</Link>
+                        </Typography>}
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
                             <Link to="/cart" style={{ textDecoration: 'none',color:"white" }}>Cart</Link>
                         </Typography>
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
-                        <Link to="/admin" style={{ textDecoration: 'none',color:"white" }}>Admin</Link>
+                        { token1=="admin"&&<Link to="/admin" style={{ textDecoration: 'none',color:"white" }} onClick={()=>{
+                            setFlag(flag => (!flag))
+                        }}>Admin</Link>}
                         </Typography>
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
                         <Link to="/signup" style={{ textDecoration: 'none',color:"white" }}>Sign up</Link>

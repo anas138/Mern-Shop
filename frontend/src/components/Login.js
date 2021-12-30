@@ -2,6 +2,7 @@ import axios from 'axios';
 import React,{useRef} from 'react'
 import {useDispatch } from "react-redux"
 import { useNavigate} from "react-router-dom"
+import jwt from 'jsonwebtoken'
 
 function Login() {
     const navigate=useNavigate()
@@ -19,10 +20,20 @@ function Login() {
         .then(res=>{
             console.log(res)
             localStorage.setItem("token",res.data);
+            const t=localStorage.getItem("token");
+            const v=jwt.verify(t,'aniHadin')
+            console.log(v,'verify');
             dispatch({
                 type:"setToken",
                 payload:localStorage.getItem("token")
             })
+            const verify = jwt.verify(localStorage.getItem("token"),"aniHadin")
+            if(verify.email=="admin@gmail.com"){
+                dispatch({
+                    type:"checkAdmin",
+                    payload:"admin"
+                })
+            }
             navigate('/shop')
         })
         .catch(err=>{

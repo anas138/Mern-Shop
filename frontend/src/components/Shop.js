@@ -12,8 +12,13 @@ function Shop() {
         .then((res=>{
             console.log(res)
             getProducts(res)
+           
 
         }))
+        .catch(err=>{
+            console.log(err)
+            alert("please sign in to make your shop")
+        })
         
     }, [])
 

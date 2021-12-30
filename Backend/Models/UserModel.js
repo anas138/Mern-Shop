@@ -3,9 +3,12 @@ const jwt = require("jsonwebtoken")
 const mongodb = require('mongodb')
 const object = mongodb.ObjectId
 class Users {
-    static addUsers = (user) => {
+    static addUsers = async(user) => {
         const db = getDb()
-        return db.collection("users").insertOne({ name: user.name, email: user.email, password: user.password })
+        const findUser = await db.collection("users").findOne({email: user.email})
+        console.log(findUser)
+        if(!findUser){
+        return db.collection("users").insertOne({ name: user.name, email: user.email, password: user.password,cart:{items:[]},status:"logout" })
             .then((res) => {
                 console.log(res);
                 return res
@@ -13,14 +16,17 @@ class Users {
             .catch((err) => {
                 console.log(err)
             })
+        }
+        if(findUser){
+            return {
+                res:"user already exist"
+            }
+        }
     }
 
     static signIn = (data) => {
         const db = getDb()
-        db.collection("user").updateOne({ email: data.email, password: data.password},{$set:{status:"login"}})
-        .then(res=>{
-            console.log(res,"anasRes")
-        }).catch()
+        db.collection("users").updateOne({ email: data.email, password: data.password},{$set:{status:"login"}})
         return db.collection("users").find({ email: data.email, password: data.password }).toArray()
             .then(res => {
                 console.log(res, "data")
@@ -44,10 +50,21 @@ class Users {
             quantity: data.quantity
         }
         const useProduct = await db.collection("users").findOne({ email: token.email })
-        const items = useProduct.cart.items
-        const it = items.find((p) => {
-            return (p.productId.toString() === (item.productId).toString())
-        })
+        let items=[]
+        let it=undefined
+        console.log(useProduct,"aaa");
+         if(useProduct.cart.items.length){
+           items = useProduct.cart.items
+           console.log("unnn")
+         }
+        console.log(items,"iteA")
+        
+        if(items.length){
+             it = items.find((p) => {
+                return (p.productId.toString() === (item.productId).toString())
+            })
+        }
+        
         console.log(it,'it')
         if (it==undefined) {
             db.collection("users").updateOne({ email: email }, { $set: { cart: { items: [item, ...items] } } })

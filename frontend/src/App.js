@@ -8,27 +8,32 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Cart from './components/Cart'
 import Three from './components/Three'
-
+import HomePage from "./components/homePage"
+import { useSelector} from "react-redux"
 import './App.css';
 function App() {
-  const [t,setT]=useState()
+  const t=useSelector(state=>(state.token))
+  const isAdmin=useSelector((state)=>(state.isAdmin))
   useEffect(()=>{
-    setT(localStorage.getItem("token"));
+   // setT(localStorage.getItem("token"));
     
   },[])
   return (
     <Router>
       <NavBar/>
       <Routes>
-      <Route path="/products" element={<Products/>}/>
+        <Route path="/" element={<HomePage/>}/>
       </Routes>
+      { isAdmin=="admin"&&<Routes>
+      <Route path="/products" element={<Products/>}/>
+      </Routes>}
       <Routes>
         <Route path="/shop" element={<Shop/>}/>
       </Routes>
 
-      <Routes>
+     { isAdmin=="admin"&& <Routes>
         <Route path="/admin" element={<Admin/>}/>
-      </Routes>
+      </Routes>}
       <Routes>
         <Route path="/signup" element={<SignUp/>}/>
       </Routes>
@@ -41,6 +46,9 @@ function App() {
       <Routes>
         <Route path="/three" element={<Three/>}/>
       </Routes>
+      {/* <Routes>
+        <Route  path="*" exact={true} element={<div>page not found</div>}/>
+      </Routes> */}
     </Router>
     
   );
