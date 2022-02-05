@@ -43,3 +43,29 @@ exports.getCartItem=(req,res,next)=>{
       res.send(err)
   })
 }
+exports.getUsers=(req,res,next)=>{
+    User.Users()
+    .then(user=>{
+      res.status("200").json(user)
+    })  
+}
+exports.addMessage=(req,res)=>{
+   console.log(req.body.message,"message")
+   const msg=[req.body.message]
+   User.addMessage(req.body.message)
+   .then(message=>{
+       res.status("200").json(msg)
+   })
+
+}
+exports.getMessage=(req,res)=>{
+    const id1=req.query.id1
+    const id2=req.query.id2
+    User.message(id1,id2)
+    .then(msg=>{
+        if(msg){
+            res.status("200").json(msg)
+        }
+        
+    })
+}

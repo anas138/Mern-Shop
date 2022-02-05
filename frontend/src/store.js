@@ -5,7 +5,8 @@ const initialState = {
     name: 'anas',
     singleProduct:[],
     token:'',
-    isAdmin:null
+    isAdmin:null,
+    cUser:{}
 }
 
 const reducer = (state = initialState, action) => {
@@ -39,6 +40,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 isAdmin:action.payload
+            }
+        }
+        case "set Current User":{
+            return{
+                ...state,
+                cUser:action.payload
             }
         }
         default: {

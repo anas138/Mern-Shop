@@ -10,45 +10,60 @@ import Cart from './components/Cart'
 import Three from './components/Three'
 import HomePage from "./components/homePage"
 import { useSelector} from "react-redux"
+import Practice from './components/Practice'
+import Canvas from "./components/Canvas"
+import Chat from "./components/Chat/Chat.js"
+import ChatBox from "./components/Chat/ChatBox"
 import './App.css';
 function App() {
   const t=useSelector(state=>(state.token))
   const isAdmin=useSelector((state)=>(state.isAdmin))
   useEffect(()=>{
    // setT(localStorage.getItem("token"));
-    
   },[])
   return (
     <Router>
+      <div>
       <NavBar/>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
-      </Routes>
-      { isAdmin=="admin"&&<Routes>
+      
+      { isAdmin=="admin"&&
       <Route path="/products" element={<Products/>}/>
-      </Routes>}
-      <Routes>
+      }
+      
         <Route path="/shop" element={<Shop/>}/>
-      </Routes>
+      
 
-     { isAdmin=="admin"&& <Routes>
+     { isAdmin=="admin"&& 
         <Route path="/admin" element={<Admin/>}/>
-      </Routes>}
-      <Routes>
+      }
+      
         <Route path="/signup" element={<SignUp/>}/>
-      </Routes>
-     { !t&&("token")&& <Routes>
+    
+     { !t&&("token")&& 
         <Route path="/login" element={<Login/>}/>
-      </Routes>}
-      <Routes>
+      }
+      
         <Route path="/cart" element={<Cart/>}/>
-      </Routes>
-      <Routes>
+      
+      
         <Route path="/three" element={<Three/>}/>
+      
+    
+      
+        <Route path='/prac' element={<Practice/>}/>
+      
+      
+        <Route path="/canvas" element={<Canvas/>}/>
+  
+      
+        <Route path="/chat"  element={<Chat/>}/>
+      
+      
+        <Route path="/chat/chatBox/:id" element={<ChatBox/>}/>
       </Routes>
-      {/* <Routes>
-        <Route  path="*" exact={true} element={<div>page not found</div>}/>
-      </Routes> */}
+      </div>
     </Router>
     
   );

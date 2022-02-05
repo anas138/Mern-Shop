@@ -1,3 +1,4 @@
+const axios = require("axios")
 const Product = require('../Models/Products')
 const addProducts = (req, res, next) => {
     const title = req.body;
@@ -22,7 +23,7 @@ const getProducts = (req, res, next) => {
             res.send(data)
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err,"anas")
         })
 }
 
@@ -49,11 +50,22 @@ const updateProduct = (req, res, next) => {
         })
 
 }
+const getAuth0= (req,res,next)=>{
+      const token =req.get("token")
+      console.log(token,"token")
+      res.send("authenticated")
+     axios.get("https://dev-bfhy0ygs.us.auth0.com/userinfo",{
+          headers:{authorization:`Bearer ${token}`}
+      }).then(res=>{
+          console.log(res)
+      })
+}
 
 
 module.exports = {
     addProducts: addProducts,
     getProducts: getProducts,
     deleteProducts: deleteProducts,
-    updateProduct: updateProduct
+    updateProduct: updateProduct,
+    getAuth0:getAuth0
 }

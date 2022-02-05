@@ -83,6 +83,15 @@ const NavBar = () => {
                         <Typography variant="h7" color="inherit" component="div" padding="20px">
                         <Link to="/three" style={{ textDecoration: 'none',color:"white" }}>Three js</Link>
                         </Typography>
+                        <Typography variant="h7" color="inherit" component="div" padding="20px">
+                        <Link to="/prac" style={{ textDecoration: 'none',color:"white" }}>Practice</Link>
+                        </Typography>
+                        <Typography variant="h7" color="inherit" component="div" padding="20px">
+                        <Link to="/Canvas" style={{ textDecoration: 'none',color:"white" }}>Canvas</Link>
+                        </Typography>
+                        <Typography variant="h7" color="inherit" component="div" padding="20px">
+                        <Link to="/chat" style={{ textDecoration: 'none',color:"white" }}>Chat</Link>
+                        </Typography>
                     </Toolbar>
                 </AppBar>
             </Box>

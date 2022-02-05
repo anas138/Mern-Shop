@@ -18,8 +18,13 @@ function Login() {
         }
         axios.post('http://localhost:8080/login',data)
         .then(res=>{
-            console.log(res)
-            localStorage.setItem("token",res.data);
+            console.log(res.data.res,"log")
+            dispatch({
+                type:"set Current User",
+                payload:res.data.res
+            })
+            localStorage.setItem("token",res.data.token);
+            localStorage.setItem("cUser",JSON.stringify(res.data.res));
             const t=localStorage.getItem("token");
             const v=jwt.verify(t,'aniHadin')
             console.log(v,'verify');

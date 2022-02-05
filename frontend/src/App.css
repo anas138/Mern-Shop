@@ -61,3 +61,66 @@ body{
   margin: 50px;
   padding: 30px;
 }
+.chatContainer{
+  display: flex;
+  height: 90vh;
+}
+.users{
+  flex: 1;
+  border: 1px solid black;
+}
+.chatBoxContainer{
+  border: 1px solid black;
+  height:89vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 500px;
+  margin-left: 30%;
+  
+ 
+  
+ 
+}
+.chatC{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgb(23, 23, 233);
+  max-width: 200px;
+  overflow-wrap: break-word;
+  color: rgb(219, 209, 209);
+  
+  
+  
+  
+}
+.chatC2{
+  margin-left: 50%;
+  background-color: rgb(214, 207, 207);
+  color: black;
+}
+.chatInput{
+  position:absolute;
+  bottom: 0;
+  display: flex;
+
+}
+.chatWraper{
+  height: 80vh;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+}
+.text{
+  width: 400px;
+  padding: 5px;
+  height: 5vh;
+}
+.sendButton{
+  width: 90px;
+  color: white;
+  background-color: rgb(65, 139, 65);
+  border: 0;
+  cursor: pointer;
+
+}

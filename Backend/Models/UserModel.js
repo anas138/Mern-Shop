@@ -31,8 +31,11 @@ class Users {
             .then(res => {
                 console.log(res, "data")
                 if (res.length !== 0) {
-                    const token = jwt.sign({ email: data.email, password: data.password }, "aniHadin")
-                    return token
+                    const token = jwt.sign({ email: data.email, password: data.password}, "aniHadin")
+                    return {
+                          token,
+                           res
+                    }
                 }
 
                
@@ -112,6 +115,43 @@ class Users {
                 })
         }
 
+    }
+    static Users=()=>{
+        const db = getDb()
+           return   db.collection("users").find().toArray()
+        .then(user=>{
+            return user
+        })
+        .catch(err=>{
+            return err
+        })
+
+    }
+    static addMessage=async(messages)=>{
+        if(messages.senderId && messages.receiverId ){
+            const db = getDb()
+        const exixtUsers= await db.collection("users").find({_id:new object(messages.senderId),_id:new object(messages.receiverId)}).toArray()
+        if(exixtUsers){
+        return db.collection("messages").insertOne({senderId:messages.senderId,receiverId:messages.receiverId,text:messages.text})
+          .then(res=>{
+              return res
+          })
+          .catch(err=>{
+              return err
+          })
+        }
+        }
+    }
+    static message=(id1,id2)=>{
+        const db = getDb()
+        return db.collection("messages").find({$or:[ {senderId:id1,receiverId:id2},{senderId:id2,receiverId:id1}] }).toArray()
+        .then(msg=>{
+            console.log(msg,"msg")
+            return msg
+        })
+        .catch(err=>{
+            return err
+        })
     }
 }
 

@@ -9,6 +9,7 @@ class ApiHandler{
         }
    })
     .then(res => {
+        console.log(res)
          payload=res.data
     })
     return payload;
