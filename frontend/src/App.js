@@ -61,7 +61,7 @@ function App() {
         <Route path="/chat"  element={<Chat/>}/>
       
       
-        <Route path="/chat/chatBox/:id" element={<ChatBox/>}/>
+        <Route path="/chat/chatBox/:id/:name" element={<ChatBox/>}/>
       </Routes>
       </div>
     </Router>

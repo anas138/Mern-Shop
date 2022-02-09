@@ -70,13 +70,14 @@ body{
   border: 1px solid black;
 }
 .chatBoxContainer{
-  border: 1px solid black;
+  border: 2px solid rgb(46, 43, 43);
   height:89vh;
   display: flex;
   flex-direction: column;
   position: relative;
   max-width: 500px;
   margin-left: 30%;
+  
   
  
   
@@ -107,9 +108,10 @@ body{
 
 }
 .chatWraper{
-  height: 80vh;
+  height: 75vh;
   margin-bottom: 10px;
-  overflow-y: scroll;
+  
+  
 }
 .text{
   width: 400px;
@@ -123,4 +125,83 @@ body{
   border: 0;
   cursor: pointer;
 
+}
+.chatHeader{
+  width: 500px;
+  height: 50px;
+  background-color: rgb(46, 43, 43);
+  display: flex;
+  align-items: center;
+  
+}
+.chatHeader span{
+  color: rgb(245, 238, 238);
+  padding: 10px;
+
+} 
+.Main-chat-container{
+  background-color: black;
+  height:90vh;
+}
+.usersContainer{
+  padding: 10px;
+  text-decoration: none;
+}
+.chat-box-heading{
+  display: flex;
+  flex-direction: row;
+}
+.chat-heading-icon{
+  cursor: pointer;
+}
+.login-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  flex-direction: column;
+  height: 40vh;
+  width: 500px;
+  padding: 10px;
+  margin: 10px;
+  background-color:  rgb(46, 43, 43);
+  border-radius: 5px;
+}
+.login-container input{
+  margin: 5px;
+  padding: 10px;
+  width: 300px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.login-container button{
+  margin: 5px;
+  padding: 10px;
+  width: 300px;
+  border: 0;
+  border-radius: 10px;
+  background-color: rgb(194, 115, 194);
+}
+.login-main-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background-color: black;
+}
+.login-heading{
+  margin-top: 5px;
+  padding: 10px;
+  }
+.login-heading span{
+    font-weight: bold;
+    font-size: 30px;
+}
+.dont-have-account{
+  margin-top: 5px;
+  padding: 10px;
+}
+.login-sign-up{
+  cursor: pointer;
+  color: rgb(82, 82, 228);
 }

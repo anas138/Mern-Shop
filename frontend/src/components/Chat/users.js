@@ -3,6 +3,7 @@ import axios from "axios"
 import {Link} from "react-router-dom"
 
 
+
 function Users() {
   const [user,setUsers] =useState([])
   const [cUser,setCuser] =useState([])
@@ -22,14 +23,18 @@ function Users() {
 
   }
   console.log(cUser,"user")
-  return <div>
-    
+  return  <div className="Main-chat-container">
+     <div className="chatBoxContainer">
+     <div className="chatHeader"> 
+        <span>Chats</span> 
+    </div>
     {user&& user.filter(us=>(us._id!==cUser._id)).map(u=>{
-      return<div onClick={()=>{selectChat(u._id)}}>
-        <Link to={`/chat/chatbox/${u._id}`}>{u.name}</Link>
+      return<div onClick={()=>{selectChat(u._id)}} className="usersContainer">
+        <Link to={`/chat/chatbox/${u._id}/${u.name}`} style={{textDecoration:"none",color:"whiteSmoke"}} >{u.name}</Link>
       </div>
     })}
-  </div>;
+    </div>
+  </div>
 }
 
 export default Users;
